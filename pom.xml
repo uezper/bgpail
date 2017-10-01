@@ -17,17 +17,17 @@
     <artifactId>libthrift</artifactId>
     <version>0.10.0</version>
     <type>pom</type>
-</dependency>-->
+</dependency> -->
 
 
 
 
 <!-- https://mvnrepository.com/artifact/jvyaml/jvyaml -->
-<dependency>
+<!--   <dependency>
     <groupId>jvyaml</groupId>
     <artifactId>jvyaml</artifactId>
     <version>1.0.0</version>
-</dependency>
+</dependency> -->
 
 
 <dependency>
