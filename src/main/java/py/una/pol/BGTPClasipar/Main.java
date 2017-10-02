@@ -14,14 +14,16 @@ import py.una.pol.BGTPClasipar.datos.DataUnit;
 import py.una.pol.BGTPClasipar.datos.Pedigree;
 import py.una.pol.BGTPClasipar.datos.PublicacionEdge;
 import py.una.pol.BGTPClasipar.datos.UserID;
+import py.una.pol.BGTPClasipar.spartkTest.SingleSparkJob;
 
 
 public class Main {
 
 	public static void main(String[] args) {
 
-		escribir();
-		leer();
+		//escribir();
+		//leer();
+		SingleSparkJob.execute();
 	}
 
 	
@@ -90,4 +92,6 @@ public class Main {
 		}
 		
 	}
+	
+
 }
