@@ -61,8 +61,10 @@ public class SparkCustomDataReceiver extends Receiver<Data> {
 		}
 	
 		buffer.flush();
+		byte[] b = buffer.toByteArray();
+		System.out.println(">>----- " + b.length);
 		Data newData = new Data();	        	
-    	new TDeserializer().deserialize((TBase)newData, buffer.toByteArray());    	
+    	new TDeserializer().deserialize((TBase)newData, b);    	
 		store(newData);
 	      
 	   
@@ -78,7 +80,8 @@ public class SparkCustomDataReceiver extends Receiver<Data> {
       restart("Error receiving data", t);
     }
   }
-  
+ 
+ 
   
 }
 

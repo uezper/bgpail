@@ -19,9 +19,10 @@ import py.una.pol.BGTPClasipar.datos.Data;
 
 public class SparkReceiver {
 
-	public static final String HOST = "localhost";
+	public static final String HOST = "192.168.56.1";
 	public static final String PAIL_DIR = "/usr/hduser/clasipar/new_data";
 	public static final int PORT = 9999;
+
 	
 	public SparkReceiver() {
 		
@@ -29,7 +30,7 @@ public class SparkReceiver {
         SparkConf conf = new SparkConf()                
                 .setAppName("SparkReceiver");
         JavaStreamingContext ssc =
-                new JavaStreamingContext(conf, Durations.seconds(5));
+                new JavaStreamingContext(conf, Durations.seconds(2));
 
         // Receive streaming data from the source        
         JavaDStream<Data> customReceiverStream = ssc.receiverStream(new SparkCustomDataReceiver(HOST, PORT));
@@ -42,6 +43,7 @@ public class SparkReceiver {
 				List<Data> result = rdd.collect();
            
                 for (Data temp : result) {
+                	System.out.println("--> " + temp);
                    write(temp);
 
                 }
@@ -99,4 +101,8 @@ public class SparkReceiver {
 		return pail;
 	}
 	
+	
+	public static void executeReceiver() {
+		SparkReceiver sr = new SparkReceiver();
+	}
 }

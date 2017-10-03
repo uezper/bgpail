@@ -4,6 +4,8 @@ import java.io.IOException;
 import com.backtype.hadoop.pail.Pail;
 import com.backtype.hadoop.pail.Pail.TypedRecordOutputStream;
 
+import py.una.pol.BGTP.Clasipar.Sender.Sender;
+import py.una.pol.BGTP.Clasipar.SparkReceiver.SparkReceiver;
 import py.una.pol.BGTPClasipar.Pail.DataPailStructure;
 import py.una.pol.BGTPClasipar.Pail.SplitDataPailStructure;
 import py.una.pol.BGTPClasipar.datos.AnuncioID;
@@ -23,7 +25,9 @@ public class Main {
 
 		//escribir();
 		//leer();
-		SingleSparkJob.execute();
+		//SingleSparkJob.execute();
+		//SparkReceiver.executeReceiver();
+		Sender.executeSender();
 	}
 
 	
