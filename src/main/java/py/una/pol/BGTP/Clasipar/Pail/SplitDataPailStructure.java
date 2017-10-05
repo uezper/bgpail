@@ -1,4 +1,4 @@
-package py.una.pol.BGTPClasipar.Pail;
+package py.una.pol.BGTP.Clasipar.Pail;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,8 +14,8 @@ import org.apache.thrift.meta_data.FieldMetaData;
 import org.apache.thrift.meta_data.FieldValueMetaData;
 import org.apache.thrift.meta_data.StructMetaData;
 
-import py.una.pol.BGTPClasipar.datos.Data;
-import py.una.pol.BGTPClasipar.datos.DataUnit;
+import py.una.pol.BGTP.Clasipar.datos.Data;
+import py.una.pol.BGTP.Clasipar.datos.DataUnit;
 
 public class SplitDataPailStructure extends DataPailStructure {	
 	private static final long serialVersionUID = 1L;	

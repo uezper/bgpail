@@ -1,23 +1,20 @@
-package py.una.pol.BGTPClasipar;
+package py.una.pol.BGTP.Clasipar;
 
 import java.io.IOException;
+
 import com.backtype.hadoop.pail.Pail;
 import com.backtype.hadoop.pail.Pail.TypedRecordOutputStream;
 
+import py.una.pol.BGTP.Clasipar.Pail.SplitDataPailStructure;
 import py.una.pol.BGTP.Clasipar.Sender.Sender;
-import py.una.pol.BGTP.Clasipar.SparkReceiver.SparkReceiver;
-import py.una.pol.BGTPClasipar.Pail.DataPailStructure;
-import py.una.pol.BGTPClasipar.Pail.SplitDataPailStructure;
-import py.una.pol.BGTPClasipar.datos.AnuncioID;
-import py.una.pol.BGTPClasipar.datos.AnuncioProperty;
-import py.una.pol.BGTPClasipar.datos.AnuncioPropertyValue;
-import py.una.pol.BGTPClasipar.datos.Data;
-import py.una.pol.BGTPClasipar.datos.DataUnit;
-import py.una.pol.BGTPClasipar.datos.Pedigree;
-import py.una.pol.BGTPClasipar.datos.PublicacionEdge;
-import py.una.pol.BGTPClasipar.datos.UserID;
-import py.una.pol.BGTPClasipar.spartkTest.SingleSparkJob;
-
+import py.una.pol.BGTP.Clasipar.datos.AnuncioID;
+import py.una.pol.BGTP.Clasipar.datos.AnuncioProperty;
+import py.una.pol.BGTP.Clasipar.datos.AnuncioPropertyValue;
+import py.una.pol.BGTP.Clasipar.datos.Data;
+import py.una.pol.BGTP.Clasipar.datos.DataUnit;
+import py.una.pol.BGTP.Clasipar.datos.Pedigree;
+import py.una.pol.BGTP.Clasipar.datos.PublicacionEdge;
+import py.una.pol.BGTP.Clasipar.datos.UserID;
 
 public class Main {
 

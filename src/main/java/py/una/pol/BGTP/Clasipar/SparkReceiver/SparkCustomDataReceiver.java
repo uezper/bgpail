@@ -1,19 +1,17 @@
 package py.una.pol.BGTP.Clasipar.SparkReceiver;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.ConnectException;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
 
 import org.apache.spark.storage.StorageLevel;
 import org.apache.spark.streaming.receiver.Receiver;
 import org.apache.thrift.TBase;
 import org.apache.thrift.TDeserializer;
 
-import py.una.pol.BGTPClasipar.datos.Data;
+import py.una.pol.BGTP.Clasipar.datos.Data;
 
 public class SparkCustomDataReceiver extends Receiver<Data> {
 
@@ -46,27 +44,24 @@ public class SparkCustomDataReceiver extends Receiver<Data> {
     String userInput = null;
 
     try {
-      // connect to the server
-      socket = new Socket(host, port);
+    	// connect to the server
+    	socket = new Socket(host, port);
 
-      
-       InputStream is = socket.getInputStream();
-	  	ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-	
-		int nRead;
-		byte[] data = new byte[16384];
-	
-		while ((nRead = is.read(data, 0, data.length)) != -1) {
-		  buffer.write(data, 0, nRead);
-		}
-	
-		buffer.flush();
-		byte[] b = buffer.toByteArray();
-		System.out.println(">>----- " + b.length);
-		Data newData = new Data();	        	
-    	new TDeserializer().deserialize((TBase)newData, b);    	
-		store(newData);
-	      
+    	
+    	DataInputStream dIn = new DataInputStream(socket.getInputStream());
+
+    	byte[] message = null;
+    	int length = dIn.readInt();                    // read length of incoming message
+    	if(length>0) {
+    	    message = new byte[length];
+    	    dIn.readFully(message, 0, message.length); // read the message
+    	}
+    	
+    	if (message != null) {
+			Data newData = new Data();	        	
+	    	new TDeserializer().deserialize((TBase)newData, message);    	
+			store(newData);     
+    	}
 	   
 		socket.close();
 

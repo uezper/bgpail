@@ -14,13 +14,13 @@ import org.apache.thrift.TException;
 import com.backtype.hadoop.pail.Pail;
 import com.backtype.hadoop.pail.Pail.TypedRecordOutputStream;
 
-import py.una.pol.BGTPClasipar.Pail.SplitDataPailStructure;
-import py.una.pol.BGTPClasipar.datos.Data;
+import py.una.pol.BGTP.Clasipar.Pail.SplitDataPailStructure;
+import py.una.pol.BGTP.Clasipar.datos.Data;
 
 public class SparkReceiver {
 
 	public static final String HOST = "192.168.56.1";
-	public static final String PAIL_DIR = "/usr/hduser/clasipar/new_data";
+	public static final String PAIL_DIR = "/user/hduser/clasipar/new_data";
 	public static final int PORT = 9999;
 
 	
@@ -35,24 +35,18 @@ public class SparkReceiver {
         // Receive streaming data from the source        
         JavaDStream<Data> customReceiverStream = ssc.receiverStream(new SparkCustomDataReceiver(HOST, PORT));
         
-
-        customReceiverStream.foreachRDD(new VoidFunction<JavaRDD<Data>>() {
-			
+        customReceiverStream.foreachRDD(new VoidFunction<JavaRDD<Data>>() {		
 			@Override
 			public void call(JavaRDD<Data> rdd) throws Exception {
 				List<Data> result = rdd.collect();
            
                 for (Data temp : result) {
-                	System.out.println("--> " + temp);
-                   write(temp);
-
+                	write(temp);
                 }
 			}
 		}); 
 		
-		
-
-        
+		        
         
         // Execute the Spark workflow defined above
         ssc.start();
@@ -66,16 +60,14 @@ public class SparkReceiver {
 	
 	
 	
-	
-	
 	private void write(Data newData) throws TException, IOException {
 		
 		Pail<Data> pail = getPail();
 		if (pail != null) {
 			TypedRecordOutputStream int_os = pail.openWrite();
 			int_os.writeObject(newData);
-
 			int_os.close();
+			//pail.consolidate();
 		}
 
 	}
@@ -86,7 +78,10 @@ public class SparkReceiver {
 		try {
 			pail = new Pail(PAIL_DIR);
 
-		} catch (IOException e) {
+		} catch(IllegalArgumentException e) {
+			pail = null;
+		}
+		  catch (IOException e) {
 			e.printStackTrace();
 		}
 

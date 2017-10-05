@@ -1,4 +1,4 @@
-package py.una.pol.BGTPClasipar.spartkTest;
+package py.una.pol.BGTP.Clasipar.spartkTest;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,8 +19,8 @@ import org.apache.tools.ant.util.facade.FacadeTaskHelper;
 import com.backtype.hadoop.pail.Pail;
 import com.backtype.hadoop.pail.Pail.TypedRecordOutputStream;
 
-import py.una.pol.BGTPClasipar.Pail.SplitDataPailStructure;
-import py.una.pol.BGTPClasipar.datos.Data;
+import py.una.pol.BGTP.Clasipar.Pail.SplitDataPailStructure;
+import py.una.pol.BGTP.Clasipar.datos.Data;
 import scala.Tuple2;
 
 public class SingleSparkJob {
