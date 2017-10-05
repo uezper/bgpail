@@ -33,6 +33,12 @@
     <version>2.2.0</version>
 </dependency>
 
+<dependency>
+    <groupId>org.apache.spark</groupId>
+    <artifactId>spark-streaming_2.10</artifactId>
+    <version>2.2.0</version>
+    <scope>provided</scope>
+</dependency>
 
 <!-- https://mvnrepository.com/artifact/jvyaml/jvyaml -->
 <!--   <dependency>
