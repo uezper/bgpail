@@ -1,6 +1,5 @@
-
-
 union AnuncioID {
+
 1: i64 id;
 }
 union UserID {
@@ -14,6 +13,7 @@ struct PublicacionEdge {
 union AnuncioPropertyValue {
 1: i64 views;
 2: i64 date;
+3: string section;
 }
 
 struct AnuncioProperty {
@@ -27,7 +27,7 @@ union DataUnit {
 }
 
 struct Pedigree {
-1: required i32 timestamp;
+1: required i64 timestamp;
 }
 
 struct Data {
