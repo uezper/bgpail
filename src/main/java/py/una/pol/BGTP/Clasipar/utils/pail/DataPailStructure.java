@@ -1,9 +1,9 @@
-package py.una.pol.BGTP.Clasipar.Pail;
+package py.una.pol.BGTP.Clasipar.utils.pail;
 
 import java.util.Collections;
 import java.util.List;
 
-import py.una.pol.BGTP.Clasipar.datos.Data;
+import py.una.pol.BGTP.Clasipar.utils.datos.Data;
 
 public class DataPailStructure extends ThriftPailStructure<Data> {
 	public Class getType() {

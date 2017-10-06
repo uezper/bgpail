@@ -1,4 +1,4 @@
-package py.una.pol.BGTP.Clasipar.Sender;
+package py.una.pol.BGTP.Clasipar.sender;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -6,14 +6,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import org.apache.thrift.TBase;
 import org.apache.thrift.TException;
 import org.apache.thrift.TSerializer;
 
 import py.una.pol.BGTP.Clasipar.Main;
-import py.una.pol.BGTP.Clasipar.SparkReceiver.SparkReceiver;
-import py.una.pol.BGTP.Clasipar.datos.Data;
+import py.una.pol.BGTP.Clasipar.receiver.SparkReceiver;
+import py.una.pol.BGTP.Clasipar.utils.datos.Data;
 
 public class Sender {
 	
@@ -41,14 +42,15 @@ public class Sender {
 		    	System.out.println("Nueva conexion establecida");
 		    	out = new DataOutputStream(socket.getOutputStream());
 		    			
-		    	byte[] b = serialize(ig.getNextData());
+		    	ArrayList<Data> datos = ig.getNextData();
 		    	
-		    	System.out.println(b.length);
+		    	out.writeInt(datos.size());
+		    	for (Data d : datos) {
+		    		byte[] b = serialize(d);
+		    		out.writeInt(b.length);
+			    	out.write(b);
+		    	}
 		    	
-		    	out.writeInt(b.length);
-		    	out.write(b);
-		    
-		    	out.flush();
 		    	out.close();
 		    	socket.close();
 		    }

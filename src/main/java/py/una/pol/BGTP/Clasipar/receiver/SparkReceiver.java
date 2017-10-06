@@ -1,4 +1,4 @@
-package py.una.pol.BGTP.Clasipar.SparkReceiver;
+package py.una.pol.BGTP.Clasipar.receiver;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,8 +14,8 @@ import org.apache.thrift.TException;
 import com.backtype.hadoop.pail.Pail;
 import com.backtype.hadoop.pail.Pail.TypedRecordOutputStream;
 
-import py.una.pol.BGTP.Clasipar.Pail.SplitDataPailStructure;
-import py.una.pol.BGTP.Clasipar.datos.Data;
+import py.una.pol.BGTP.Clasipar.utils.datos.Data;
+import py.una.pol.BGTP.Clasipar.utils.pail.SplitDataPailStructure;
 
 public class SparkReceiver {
 

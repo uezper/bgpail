@@ -1,4 +1,4 @@
-package py.una.pol.BGTP.Clasipar.Pail;
+package py.una.pol.BGTP.Clasipar.utils.pail;
 
 import org.apache.thrift.TBase;
 import org.apache.thrift.TDeserializer;

@@ -1,4 +1,4 @@
-package py.una.pol.BGTP.Clasipar.SparkReceiver;
+package py.una.pol.BGTP.Clasipar.receiver;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -11,7 +11,7 @@ import org.apache.spark.streaming.receiver.Receiver;
 import org.apache.thrift.TBase;
 import org.apache.thrift.TDeserializer;
 
-import py.una.pol.BGTP.Clasipar.datos.Data;
+import py.una.pol.BGTP.Clasipar.utils.datos.Data;
 
 public class SparkCustomDataReceiver extends Receiver<Data> {
 
@@ -51,18 +51,23 @@ public class SparkCustomDataReceiver extends Receiver<Data> {
     	DataInputStream dIn = new DataInputStream(socket.getInputStream());
 
     	byte[] message = null;
-    	int length = dIn.readInt();                    // read length of incoming message
-    	if(length>0) {
-    	    message = new byte[length];
-    	    dIn.readFully(message, 0, message.length); // read the message
-    	}
-    	
-    	if (message != null) {
-			Data newData = new Data();	        	
-	    	new TDeserializer().deserialize((TBase)newData, message);    	
-			store(newData);     
-    	}
-	   
+		int num = dIn.readInt();
+		
+		for (int i = 0; i < num; i++) { // read number of records
+
+			int length = dIn.readInt(); // read length of incoming message
+			
+			if (length > 0) {
+				message = new byte[length];
+				dIn.readFully(message, 0, message.length); // read the message
+			}
+
+			if (message != null) {
+				Data newData = new Data();
+				new TDeserializer().deserialize((TBase) newData, message);
+				store(newData);
+			}
+		}
 		socket.close();
 
       // Restart in an attempt to connect again when server is active again
